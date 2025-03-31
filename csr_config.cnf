@@ -1,0 +1,29 @@
+[ req ]
+default_bits       = 4096
+default_md         = sha256
+distinguished_name = req_distinguished_name
+req_extensions     = v3_req
+prompt             = no
+
+[ req_distinguished_name ]
+C = JP
+ST = Tokyo
+L = Chiyoda-ku
+OU = TrueNAS home users
+O = Apps
+emailAddress = shimies@duck.com
+
+[ v3_req ]
+basicConstraints = critical, CA:false
+keyUsage = critical, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth, clientAuth
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = truenas.local
+IP.1  = 192.168.101.110
+
+# The following properties are specified somewhere else
+# * Key type: RSA  --- when generating private key
+#   * Key legnth as well, here we just specify fallback length as 4096
+# * Lifetime: 398 days  --- when signing
