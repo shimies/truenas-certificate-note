@@ -1,6 +1,6 @@
 ## Background
 On creating a certificate through TrueNAS UI, it seems impossible to have SAN to include `IP Address:` as shown in the example below, which is inconvenient when the use case where the user accesses the TrueNAS using IP address directly exists.
-So, here is the summary of steps to create a certificate that is signed by our own private CA created through TrueNAS UI, having SAN of `IP adress:`.
+So, here is the summary of steps to create a certificate that is signed by our own private CA created through TrueNAS UI, having SAN of `IP Address:`.
 
 
 ```sh
@@ -27,16 +27,16 @@ Then generate the CSR.
 Check if `server.csr` is created in the current directory.
 
 ```sh
-openssl req -new -key server.key -out server.csr -config csr_config.cnf
+openssl req -new -config csr_config.cnf -key server.key -out server.csr
 ```
 
 #### Generate CSR and its private key altogether (Option 2)
 ```sh
-openssl req -new -config csr_config.cnf -out server.csr -newkey rsa -nodes -keyout server.key
+openssl req -new -config csr_config.cnf -newkey rsa -nodes -keyout server.key -out server.csr
 ```
 
 Then check if `server.csr` and `server.key` are created in the current directory.
-Note that the size of the private key is not specified but is instead read from csr_config.cnf file.
+Note that the size of the private key is not specified but is instead read from `csr_config.cnf` file.
 
 
 #### Verify the CSR
